@@ -1,0 +1,79 @@
+\documentclass[a4paper]{article}
+\usepackage{etoolbox}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{amsthm}
+\usepackage{textcomp}
+\usepackage{subfig}
+\usepackage{bm}
+\usepackage{gensymb}
+
+\input{config.tex} % Innstillinger for dette dokumentet
+
+\input{../../Template/lib/packages.tex} % Inkluderer nyttige pakker.
+
+\input{../../Template/lib/commands.tex} 
+
+\input{../../Template/lib/mycommands.tex} 
+
+\input{../../Template/lib/vectors_and_differentials.tex}
+
+%\setlength\epigraphwidth{18cm}
+%\setlength\epigraphrule{0pt}
+
+%\makeatletter
+%\patchcmd{\epigraph}{\@epitext{#1}}{\itshape\@epitext{#1}}{}{}
+%\makeatother
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{biblatex}
+\usepackage{lmodern}
+\usepackage{caption}
+\usepackage{float}
+%\usepackage{newtxtext,newtxmath}
+
+\renewcommand{\contentsname}{Table of content}
+\renewcommand{\figurename}{Figur}
+\renewcommand{\labelenumi}{(\alph{enumi})}
+\let\underdot=\d % rename builtin command \d{} to \underdot{}
+\renewcommand{\d}[2]{\frac{d #1}{d #2}} % for derivatives
+
+\let\whatisthis=\RN
+\mathtoolsset{showonlyrefs}
+
+
+\renewcommand{\thesection}{}
+\renewcommand{\thesubsection}{}
+\makeatletter
+\def\@seccntformat#1{\csname #1ignore\expandafter\endcsname\csname the#1\endcsname\quad}
+\let\sectionignore\@gobbletwo
+\let\latex@numberline\numberline
+\def\numberline#1{\if\relax#1\relax\else\latex@numberline{#1}\fi}
+\makeatother
+%%FJERNER KAPITTELNUMMERERING
+\setlength{\parindent}{0pt} % Disable indentation
+
+
+
+\begin{document}
+\hypersetup{pageanchor=false}
+\begin{titlepage}
+    \centering
+    \vfill
+    {\Large
+        {\huge TTK____ TITLE\\}
+        \vskip.5cm
+        {\Large Homework Assignment X\\
+        \vskip2cm
+        NAME NAMESON\\}
+    }
+    \vfill
+    \includegraphics{ntnu-logo.pdf} % also works with logo.pdf
+    \vfill
+    \vfill
+\end{titlepage}
+\hypersetup{pageanchor=true}
+
+
+\end{document}

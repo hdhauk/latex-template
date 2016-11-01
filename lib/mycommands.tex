@@ -1,0 +1,67 @@
+% Laplace operator
+\newsavebox\foobox
+\newlength{\foodim}
+\newcommand{\slantbox}[2][0]{\mbox{%
+        \sbox{\foobox}{#2}%
+        \foodim=#1\wd\foobox
+        \hskip \wd\foobox
+        \hskip -0.5\foodim
+        \pdfsave
+        \pdfsetmatrix{1 0 #1 1}%
+        \llap{\usebox{\foobox}}%
+        \pdfrestore
+        \hskip 0.5\foodim
+}}
+\def\Laplace{\slantbox[-.45]{$\mathscr{L}$}}
+
+%Theorems
+\theoremstyle{definition}
+\newtheorem{defn}{\color{WildStrawberry}{Definisjon}}
+\newtheorem{exmp}{\color{WildStrawberry}{Example}}
+\theoremstyle{plain}
+\newtheorem{thm}{\color{Lavender}{Teorem}}
+\theoremstyle{remark}
+\newtheorem*{egen}{\color{RoyalBlue}{Egenskaper}}
+\newtheorem*{merk}{\color{Magenta}{Merk}}
+\newtheorem{eks}{\color{WildStrawberry}{Eksempel}}
+
+
+\newcommand{\e}[1]{\operatorname{e}^{#1}}
+\newcommand{\V}{\mathcal{V}}
+\newcommand{\interior}[1]{%
+  {\kern0pt#1}^{\mathrm{o}}%
+}
+\DeclarePairedDelimiterX{\inp}[2]{\langle}{\rangle}{#1, #2}
+
+% Streachable parenheses
+\newcommand{\pa}[1]{\left(#1\right)} % encloses the argument using stretchable parentheses
+% Streachable brackets
+\newcommand{\bra}[1]{\left[#1\right]}
+% Streachable curly brackets
+\newcommand{\cur}[1]{\left\{#1 \right\}}
+% Matrix without brackets
+\newcommand{\mat}[1]{\begin{matrix}#1\end{matrix}}
+% Matrix with brackets
+\newcommand{\bmat}[1]{\bra{\mat{#1}}}
+% Determinant matrix
+\newcommand{\detmat}[1]{\begin{vmatrix}#1\end{vmatrix}}
+% Split matrix  - vertical separator
+\newcommand{\splitmat}[2]{\bra{\begin{array}{c|c}#1&#2\end{array}}}
+% Numbering in {align*} enviroment. Usage: \numberthis \label{eq:MY_LABEL}
+\newcommand{\numberthis}{\addtocounter{equation}{1}\tag{\theequation}}
+% Rank operator
+\newcommand{\rank}[1]{\text{rank }#1}
+% Split function notation
+\newcommand{\splitfunc}[4]{\begin{cases}#1 &#2\\#3 &#4\end{cases}}
+% Absolute brackets
+\newcommand{\abs}[1]{\left|#1\right|}
+% MATLAB code
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage[numbered,framed]{matlab-prettifier}
+% {firstline}{lastline}{filelocation}
+\newcommand{\matlab}[3]{\lstinputlisting[style= Matlab-editor,basicstyle = \mlttfamily\small, firstline=#1, lastline=#2]{#3}}
+% Characteristic polynomial
+\newcommand{\chardet}[1]{\det{\pa{\vec{#1} - \lambda\vI}}}
+% Expected value E[X] operator
+\newcommand{\E}[1]{\text{E}\bra{#1}}

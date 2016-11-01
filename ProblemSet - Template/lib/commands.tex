@@ -1,0 +1,101 @@
+% - Commands defined in this file:                                   - %
+% -- \at{x} creates an "evaluated at x"-symbol: |_x                 -- %
+% -- \avg{x} creates an "average of x"-symbol (bracket or overline) -- %
+% -- \ceil{x} creates the ceiling of x                              -- %
+% -- \cstitle creates a subsection with a centered title            -- %
+% -- \ctitle creates a section with a centered title                -- %
+% -- \floor{x} creates the floor of x                               -- %
+% -- \grandtitle{title} creates a title which spans the entire page -- %
+% -- \i{text} emphasizes the text and creates an index entry for it -- %
+% -- \pdif{u}{x}{v} creates a complete partial derivative (du/dx)_v -- %
+% -- \spdif{f}{x} creates a simple partial derivative: df/dx        -- %
+% -- \wip creates a footnote with a message defined in the config   -- %
+
+% Evaluated-at operator
+\newcommand{\at}[1]{\Bigr|_{#1}}
+% Average operator
+\newcommand{\avg}[1]{\ifbool{bracketavg}{\left< #1 \right>}{\overline{#1}}}
+% Mark unfinished text with a footnote
+\newcommand{\wip}{\footnote{\wipmessage}}
+% Centered section titles and subsection titles
+\newcommand{\ctitle}[1]
+{{
+	\color{\maincolor}
+	\begin{centering}\section{#1}\end{centering}
+	\hrule height 0.5pt \bigskip
+}}
+\newcommand{\cstitle}[1]
+{{
+	\color{\maincolor}
+	\begin{centering}\subsection{#1}\end{centering}
+}}
+
+
+
+
+% Indexing: \i{text} emphasizes the content and creates an index entry for it
+\ifbool{index}{\makeindex\renewcommand{\i}[1]{\index{#1}\emph{#1}}}{}
+% 
+\ifbool{chapnum}{\numberwithin{equation}{section}}{}
+% Same display style for all math
+\ifbool{dispstyle}{\everymath{\displaystyle}}{}
+% Quotes
+\ifbool{quotes}{
+				\setlength\epigraphwidth{17cm}
+				\setlength\epigraphrule{0pt}
+				}{}
+% Vector notation
+%\renewcommand{\vec}[1]{\ifbool{arrowvec}{\overrightarrow{#1}}{\mathbf{#1}}}
+\ifbool{boldvec}{\renewcommand{\vec}[1]{\bm{#1}}}{}
+% Make all equation numbers have equal size
+\makeatletter\renewcommand{\maketag@@@}[1]{\hbox{\m@th\ifbool{smalleqnum}{\small}{}\normalfont#1}}\makeatother
+% Simple partial derivative
+\newcommand{\spdif}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\tspdif}[2]{\tfrac{\partial #1}{\partial #2}}
+% Partial derivative with #3 held constant
+\newcommand{\pdif}[3]{\left(\frac{\partial #1}{\partial #2}\right)_{#3}}
+% Rounding
+\newcommand{\ceil}[1]{\left\lceil{#1}\right\rceil}
+\newcommand{\floor}[1]{\left\lfloor{#1}\right\rfloor}
+% Grandiose document title (requires graphicx)
+\newcommand{\grandtitle}[1]
+{{
+	\color{\maincolor}
+	\begin{centering}
+	\resizebox{1\hsize}{!}
+	{
+		#1
+	}
+	\bigskip
+	\end{centering}
+}}
+
+% Quotes
+\makeatletter
+				\patchcmd{\epigraph}{\@epitext{#1}}{\itshape\@epitext{#1}}{}{}
+				\makeatother
+
+
+\hypersetup{
+    bookmarks=true,         % show bookmarks bar?
+    bookmarksnumbered=true,
+    unicode=false,          % non-Latin characters in Acrobat’s bookmarks
+    pdftoolbar=true,        % show Acrobat’s toolbar?
+    pdfmenubar=true,        % show Acrobat’s menu?
+    pdfpagemode=UseOutlines,
+    pdffitwindow=false,     % window fit to page when opened
+    pdfstartview={FitW},    % fits the width of the page to the window
+    %pdftitle={},    % title
+    pdfauthor={Erlend},     % author
+    %pdfsubject={Subject},   % subject of the document
+    %pdfcreator={Creator},   % creator of the document
+    %pdfproducer={Producer}, % producer of the document
+    %pdfkeywords={keyword1, key2, key3}, % list of keywords
+    pdfnewwindow=true,      % links in new PDF window
+    colorlinks=true,       % false: boxed links; true: colored links
+    linkcolor=black,          % color of internal links (change box color with linkbordercolor)
+    linkbordercolor = black,
+    citecolor=green,        % color of links to bibliography
+    filecolor=magenta,      % color of file links
+    urlcolor=cyan           % color of external links
+}
