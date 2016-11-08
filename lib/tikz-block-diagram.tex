@@ -6,3 +6,37 @@
 \tikzstyle{output} = [coordinate]
 \tikzstyle{pinstyle} = [pin edge={to-,thin,black}]
 \tikzstyle{vec->}=[line width=1mm,-stealth,postaction={draw, line width=1mm, shorten >=4mm, -}]
+\tikzset{
+	block/.style = {draw, fill=white, rectangle, minimum height=3em, minimum width=3em},
+	%,
+	tmp/.style  = {coordinate}, 
+	sum/.style= {draw, fill=white, circle, node distance=1cm},
+	input/.style = {coordinate},
+	output/.style= {coordinate},
+	pinstyle/.style = {pin edge={to-,thin,black}}
+}
+
+% Saturation block [satnode]
+\pgfdeclareshape{satnode}{
+\inheritsavedanchors[from={rectangle}]
+\inheritbackgroundpath[from={rectangle}]
+\inheritanchorborder[from={rectangle}]
+\foreach \x in {center,north east,north west,north,south,south east,south west}{
+\inheritanchor[from={rectangle}]{\x}
+}
+\foregroundpath{
+\pgfpointdiff{\northeast}{\southwest}
+\pgf@xa=\pgf@x \pgf@ya=\pgf@y
+\northeast
+\pgfpathmoveto{\pgfpoint{0}{0.45\pgf@ya}}
+\pgfpathlineto{\pgfpoint{0}{-0.45\pgf@ya}}
+\pgfpathmoveto{\pgfpoint{0.45\pgf@xa}{0}}
+\pgfpathlineto{\pgfpoint{-0.45\pgf@xa}{0}}
+\pgfpathmoveto{\pgfpointadd{\southwest}{\pgfpoint{-0.2\pgf@xa}{-0.3\pgf@ya}}}
+\pgfpathlineto{\pgfpointadd{\southwest}{\pgfpoint{-0.5\pgf@xa}{-0.3\pgf@ya}}}
+\pgfpathlineto{\pgfpointadd{\northeast}{\pgfpoint{-0.5\pgf@xa}{-0.3\pgf@ya}}}
+\pgfpathlineto{\pgfpointadd{\northeast}{\pgfpoint{-0.2\pgf@xa}{-0.3\pgf@ya}}}
+\pgfusepath{stroke}
+}
+}
+\makeatother

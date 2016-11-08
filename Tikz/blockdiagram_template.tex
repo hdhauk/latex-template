@@ -15,7 +15,7 @@
     % calculate the coordinate u. We need it to place the measurement block. 
     \draw [->] (controller) -- node[name=u] {$u$} (system);
     \node [output, right of=sum2] (output) {};
-    \node [block, below of=u] (measurements) {Measurements};
+    \node [block, below of=system] (tmp1) {};
 
     % Once the nodes are placed, connecting them is easy. 
     \draw [draw,vec->] (input) -- node {$r$} (sum);
@@ -23,8 +23,7 @@
     \draw [vec->] (system) -- node{$\alpha$} (sum2);
     \draw [vec->] (sum2) -- node [name=y] {$y$}(output);
     \draw [vec->] (y) |- (measurements);
-    \draw [vec->] (measurements) -| node[pos=0.99] {$-$} 
-        node [near end] {$y_m$} (sum);
+    \draw [vec->] (measurements) -| node[pos=0.99] {$-$} node [near end] {$y_m$} (sum);
 \end{tikzpicture}
 
 \end{document}
