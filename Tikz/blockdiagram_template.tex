@@ -1,0 +1,30 @@
+\documentclass{article}
+\input{../../lib/tikz-block-diagram}
+\begin{document}
+
+% The block diagram code is probably more verbose than necessary
+\begin{tikzpicture}[auto, node distance=2cm,>=latex']
+    % We start by placing the blocks
+    \node [input, name=input] {};
+    \node [input, name=disturbance]{};
+    \node [sum, right of=input] (sum) {};
+    \node [block, right of=sum] (controller) {PID};
+    \node [block, right of=controller, node distance=4cm] (system) {System};
+    \node [sum, right of=system, node distance=3cm](sum2){};
+    % We draw an edge between the controller and system block to 
+    % calculate the coordinate u. We need it to place the measurement block. 
+    \draw [->] (controller) -- node[name=u] {$u$} (system);
+    \node [output, right of=sum2] (output) {};
+    \node [block, below of=u] (measurements) {Measurements};
+
+    % Once the nodes are placed, connecting them is easy. 
+    \draw [draw,vec->] (input) -- node {$r$} (sum);
+    \draw [vec->] (sum) -- node {$e$} (controller);
+    \draw [vec->] (system) -- node{$\alpha$} (sum2);
+    \draw [vec->] (sum2) -- node [name=y] {$y$}(output);
+    \draw [vec->] (y) |- (measurements);
+    \draw [vec->] (measurements) -| node[pos=0.99] {$-$} 
+        node [near end] {$y_m$} (sum);
+\end{tikzpicture}
+
+\end{document}
