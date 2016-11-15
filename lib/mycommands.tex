@@ -55,13 +55,14 @@
 \newcommand{\splitfunc}[4]{\begin{cases}#1 &#2\\#3 &#4\end{cases}}
 % Absolute brackets
 \newcommand{\abs}[1]{\left|#1\right|}
-% MATLAB code
-\usepackage{listings}
-\usepackage{xcolor}
-\usepackage[numbered,framed]{matlab-prettifier}
-% {firstline}{lastline}{filelocation}
-\newcommand{\matlab}[3]{\lstinputlisting[style= Matlab-editor,basicstyle = \mlttfamily\small, firstline=#1, lastline=#2]{#3}}
 % Characteristic polynomial
 \newcommand{\chardet}[1]{\det{\pa{\vec{#1} - \lambda\vI}}}
 % Expected value E[X] operator
 \newcommand{\E}[1]{\text{E}\bra{#1}}
+% MATLAB code
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{breqn}
+\usepackage[numbered,framed]{matlab-prettifier}
+\newcommand{\matlab}[3]{\lstinputlisting[style= Matlab-editor,basicstyle = \mlttfamily\small, firstline=#1, lastline=#2]{#3}}
+\newcommand{\code}[1]{\lstinline[basicstyle=\ttfamily]{#1}}
