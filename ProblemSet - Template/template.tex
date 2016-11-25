@@ -9,14 +9,12 @@
 \usepackage{gensymb}
 
 \input{config.tex} % Innstillinger for dette dokumentet
-
 \input{../../latex-template/lib/packages.tex} % Inkluderer nyttige pakker.
-
 \input{../../latex-template/lib/commands.tex} 
-
 \input{../../latex-template/lib/mycommands.tex} 
-
 \input{../../latex-template/lib/vectors_and_differentials.tex}
+\input{../../latex-template/lib/tikz-block-diagram}
+
 
 %\setlength\epigraphwidth{18cm}
 %\setlength\epigraphrule{0pt}
@@ -34,7 +32,7 @@
 %\usepackage{newtxtext,newtxmath}
 
 \renewcommand{\contentsname}{Table of content}
-\renewcommand{\figurename}{Figur}
+\renewcommand{\figurename}{Figure}
 \renewcommand{\labelenumi}{(\alph{enumi})}
 \let\underdot=\d % rename builtin command \d{} to \underdot{}
 \renewcommand{\d}[2]{\frac{d #1}{d #2}} % for derivatives
