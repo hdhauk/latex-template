@@ -11,9 +11,11 @@
 	%,
 	tmp/.style  = {coordinate}, 
 	sum/.style= {draw, fill=white, circle, node distance=1cm},
-	input/.style = {coordinate},
-	output/.style= {coordinate},
-	pinstyle/.style = {pin edge={to-,thin,black}}
+	input/.style = {draw,coordinate, minimum height=3em, minimum width=3em},
+	output/.style= {draw,coordinate, minimum height=3em, minimum width=3em},
+	pinstyle/.style = {pin edge={to-,thin,black}},
+	gain/.style = {draw, thick, isosceles triangle, minimum height = 1.5em,
+        isosceles triangle apex angle=60}
 }
 
 % Saturation block [satnode]
